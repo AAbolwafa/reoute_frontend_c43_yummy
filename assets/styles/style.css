@@ -1,0 +1,46 @@
+a {
+    text-decoration: none;
+}
+
+.side-navbar {
+    width: 80%;
+}
+
+@media (min-width: 768px) {
+    .side-navbar {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .side-navbar {
+        width: 25%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .side-navbar {
+        width: 20%;
+    }
+}
+
+.side-navbar .logo-area {
+    width: 5rem;
+}
+
+.search .form-control {
+    padding-top: 0;
+    padding-inline: 0;
+    border-top: none;
+    border-inline: none;
+    border-radius: 0;
+}
+
+.search .form-control:focus {
+    box-shadow: none;
+    border-color: #FDCF11;
+}
+
+.search .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}

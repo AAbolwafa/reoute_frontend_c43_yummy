@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Yummy</title>
+        <link href="assets/images/logo.png" rel="icon" type="image/png" />
+
+        <link rel="stylesheet" href="assets/vendors/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/vendors/fontawesome-free-6.5.1-web/css/all.min.css">
+
+        <link rel="stylesheet" href="assets/styles/style.css">
+    </head>
+
+    <body class="bg-dark">
+        <div class="side-navbar d-flex position-fixed z-3 top-0 min-vh-100 bg-dark text-white shadow">
+            <div class="links-area d-flex flex-column justify-content-between flex-grow-1 min-vh-100 p-3">
+                <div class="nav-links">
+                    <ul class="links d-flex flex-column list-unstyled overflow-hidden">
+                        <li class="link-item position-relative">
+                            <a href="#" data-target="c" class="d-block py-2 text-white">Categories</a>
+                        </li>
+                        <li class="link-item position-relative">
+                            <a href="#" data-target="a" class="d-block py-2 text-white">Area</a>
+                        </li>
+                        <li class="link-item position-relative">
+                            <a href="#" data-target="i" class="d-block py-2 text-white">Ingredients</a>
+                        </li>
+                        <li class="link-item position-relative">
+                            <a href="#" data-target="contact" class="d-block py-2 text-white">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-bottom">
+                    <div class="social-icons d-flex column-gap-3">
+                        <a href="#" target="_blank" class="text-white">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-white">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-white">
+                            <i class="fa-solid fa-globe"></i>
+                        </a>
+                    </div>
+                    <p class="copyrights mt-4">Copyright Â© 2019 All Rights Reserved.</p>
+                </div>
+            </div>
+            <div class="logo-area d-flex flex-column justify-content-between p-3 text-center bg-white">
+                <a href="/">
+                    <img class="logo w-100" src="assets/images/logo.png" alt="" srcset="">
+                </a>
+                <button class="toggle-navbar btn btn-link text-dark">
+                    <i class="fa-solid fa-x fa-2x"></i>
+                </button>
+                <div class="icons d-flex flex-column row-gap-3">
+                    <a href="#" target="_blank" class="text-dark">
+                        <i class="fa-solid fa-globe"></i>
+                    </a>
+                    <a href="#" target="_blank" class="text-dark">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <main class="p-5">
+            <section class="search">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" autofocus class="form-control text-white bg-transparent" placeholder="Search by meal name">
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control text-white bg-transparent" placeholder="Search by meal first letter" maxlength="1">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="view mt-5 text-white">
+                <div class="container">
+                    <div class="row row-gap-4 text-body-emphasis">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+        <script src="assets/vendors/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendors/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+        <script src="assets/scripts/script.js"></script>
+    </body>
+
+</html>
