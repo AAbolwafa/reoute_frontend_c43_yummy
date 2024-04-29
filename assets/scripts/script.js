@@ -45,6 +45,8 @@ navLinks.on('click', (e) => {
     currentLinkTarget = target;
     if (target !== 'contact') {
         getData(renderOthers, target, 'list', 'list');
+    } else {
+        renderContact();
     }
 });
 
@@ -117,7 +119,6 @@ const renderMeals = (arr) => {
 
 // Render Meal Details
 const renderMealDetails = (item) => {
-    console.log(item);
     let ingredientsHtml = '';
     const ingredientKeys = Object.keys(item).filter((i) => i.includes('strIngredient'));
     const measureKeys = Object.keys(item).filter((i) => i.includes('strMeasure'));
@@ -186,7 +187,6 @@ const handleOtherDetails = () => {
 };
 const renderOthers = (arr) => {
     let html = '';
-    console.log(currentLinkTarget);
     for (let i = 0; i < arr.length; i++) {
         const item = arr[i];
         const title = item.strCategory || item.strArea || item.strIngredient;
@@ -235,3 +235,139 @@ const renderAlert = (className, msg) => {
 
 // On init
 getData(renderMeals);
+
+// Render Contact Us
+const renderContact = (className, msg) => {
+    const html = `
+    <div class="col">
+        <div class="contact-card card text-bg-secondary">
+            <div class="card-body">
+                <h5 class="card-title">Contact Us</h5>
+                <div class="row row-gap-4">
+                    <div class="col-md-6 col-xl-4">
+                        <input id="nameInput" type="text" class="form-control text-white bg-transparent" placeholder="Enter Your Name">
+                        <div class="alert alert-danger d-none mt-2 p-2 border-0 rounded-0">
+                            <span class="small">Special characters and numbers aren't allowed</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <input id="emailInput" type="email" class="form-control text-white bg-transparent" placeholder="Enter Your Email">
+                        <div class="alert alert-danger d-none mt-2 p-2 border-0 rounded-0">
+                            <span class="small">Email isn't valid</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <input id="phoneInput" type="text" class="form-control text-white bg-transparent" placeholder="Enter Your Phone">
+                        <div class="alert alert-danger d-none mt-2 p-2 border-0 rounded-0">
+                            <span class="small">Enter valid Phone Number</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <input id="ageInput" type="number" class="form-control text-white bg-transparent" placeholder="Enter Your Age">
+                        <div class="alert alert-danger d-none mt-2 p-2 border-0 rounded-0">
+                            <span class="small">Enter a valid age</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <input id="passwordInput" type="password" class="form-control text-white bg-transparent" placeholder="Enter Your Password">
+                        <div class="alert alert-danger d-none mt-2 p-2 border-0 rounded-0">
+                            <span class="small">Enter a valid password of minimum eight characters and includes at least one letter and one number</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <input id="repeatPasswordInput" type="password" class="form-control text-white bg-transparent" placeholder="Repeat Your Password">
+                        <div class="alert alert-danger d-none mt-2 p-2 border-0 rounded-0">
+                            <span class="small">Enter valid repassword</span>
+                        </div>
+                    </div>
+                </div>
+                <button disabled class="btn btn-dark px-2 mt-3">Submit</button>
+            </div>
+        </div>
+    </div>
+    `;
+
+    viewRow.html(html);
+};
+
+const contactSubmit = $('.contact-card button');
+const contactControls = $('.contact-card input');
+
+contactControls.on('input', (e) => {
+    if (e.target.id === 'nameInput') {
+        $('#nameInput').siblings('.alert').removeClass('d-none');
+        console.log(validateName());
+        validateName() && $('#nameInput').siblings('.alert').addClass('d-none');
+    }
+
+    if (e.target.id === 'emailInput') {
+        $('#emailInput').siblings('.alert').removeClass('d-none');
+        console.log(validateEmail());
+        validateEmail() && $('#emailInput').siblings('.alert').addClass('d-none');
+    }
+
+    if (e.target.id === 'phoneInput') {
+        $('#phoneInput').siblings('.alert').removeClass('d-none');
+        console.log(validatePhone());
+        validatePhone() && $('#phoneInput').siblings('.alert').addClass('d-none');
+    }
+
+    if (e.target.id === 'ageInput') {
+        $('#ageInput').siblings('.alert').removeClass('d-none');
+        console.log(validateAge());
+        validateAge() && $('#ageInput').siblings('.alert').addClass('d-none');
+    }
+
+    if (e.target.id === 'passwordInput') {
+        $('#passwordInput').siblings('.alert').removeClass('d-none');
+        console.log(validatePassword());
+        validatePassword() && $('#passwordInput').siblings('.alert').addClass('d-none');
+    }
+
+    if (e.target.id === 'repeatPasswordInput') {
+        $('#repeatPasswordInput').siblings('.alert').removeClass('d-none');
+        console.log(validateRepeatPassword());
+        validateRepeatPassword() && $('#repeatPasswordInput').siblings('.alert').addClass('d-none');
+    }
+
+    handleSubmitView();
+});
+
+const handleSubmitView = () => {
+    if (
+        validateName() &&
+        validateEmail() &&
+        validatePhone() &&
+        validateAge() &&
+        validatePassword() &&
+        validateRepeatPassword()
+    ) {
+        contactSubmit.attr('disabled', false);
+    } else {
+        contactSubmit.attr('disabled', true);
+    }
+};
+
+const validateName = () => {
+    return /^([a-zA-Z0-9_\s]+)$/.test($('#nameInput').value);
+};
+
+const validateEmail = () => {
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test($('#emailInput').value);
+};
+
+const validatePhone = () => {
+    return /^01[0125][0-9]{8}$/.test($('#phoneInput').value);
+};
+
+const validateAge = () => {
+    return /^(1[89]|[2-9]\d)$/.test($('#ageInput').value);
+};
+
+const validatePassword = () => {
+    return /^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{8,}$/.test($('#passwordInput').value);
+};
+
+const validateRepeatPassword = () => {
+    return $('#repeatPasswordInput').value == $('#passwordInput').value;
+};
