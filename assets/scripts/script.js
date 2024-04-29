@@ -1,3 +1,4 @@
+const loader = $('.loader');
 const sideNavbar = $('.side-navbar');
 const navLinkItems = $('.nav-links .links .link-item');
 const navLinks = $('.nav-links .links .link-item a');
@@ -48,10 +49,12 @@ navLinks.on('click', (e) => {
     } else {
         renderContact();
     }
+    closeNavbar();
 });
 
 // Data Service
 const getData = async (func = () => {}, param = 's', value = '', page = 'search') => {
+    loader.show(500);
     let data = [];
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/${page}.php?${param}=${value}`, {
         method: 'GET',
@@ -67,8 +70,10 @@ const getData = async (func = () => {}, param = 's', value = '', page = 'search'
         } else {
             renderAlert('warning', 'No data found');
         }
+        loader.hide(500);
     } else {
         renderAlert('danger', response.statusText || 'Something went wrong');
+        loader.hide(500);
     }
 };
 
@@ -205,10 +210,10 @@ const renderOthers = (arr) => {
         html += `
         <div class="col-md-6 col-lg-4 col-xl-3">
             <div class="other-card card text-bg-light h-100">
-                <div class="card-body">
+                <div class="card-body d-flex flex-column row-gap-2">
                     <h5 class="card-title">${titleIconHtml} ${title}</h5>
                     ${descHtml || ''}
-                    <button class="card-link btn btn-sm btn-dark" data-target="${currentLinkTarget}" data-target-str="${title}">View Meals</button>
+                    <button class="card-link btn btn-sm btn-dark mt-auto" data-target="${currentLinkTarget}" data-target-str="${title}">View Meals</button>
                 </div>
             </div>
         </div>
@@ -287,7 +292,11 @@ const renderContact = (className, msg) => {
     </div>
     `;
 
-    viewRow.html(html);
+    loader.show(500);
+    setTimeout(() => {
+        viewRow.html(html);
+        loader.hide(500);
+    }, 500);
 };
 
 const contactSubmit = $('.contact-card button');

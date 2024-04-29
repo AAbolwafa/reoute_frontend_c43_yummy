@@ -14,7 +14,7 @@
     </head>
 
     <body class="bg-dark">
-        <div class="side-navbar d-flex position-fixed z-3 top-0 min-vh-100 bg-dark text-white shadow">
+        <div class="side-navbar d-flex position-fixed z-2 top-0 min-vh-100 bg-dark text-white shadow">
             <div class="links-area d-flex flex-column justify-content-between flex-grow-1 min-vh-100 p-3">
                 <div class="nav-links">
                     <ul class="links d-flex flex-column list-unstyled overflow-hidden">
@@ -87,6 +87,12 @@
             </section>
 
         </main>
+
+        <div class="loader position-fixed z-3 top-0 w-100 vh-100 bg-black bg-opacity-75 text-white shadow">
+            <div class="d-flex justify-content-center align-items-center w-100 h-100">
+                <i class="fa-solid fa-circle-notch fa-4x fa-spin"></i>
+            </div>
+        </div>
 
 
         <script src="assets/vendors/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
